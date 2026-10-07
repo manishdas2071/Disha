@@ -3,14 +3,16 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faCaretDown, faRightFromBracket, faComments } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../context/AuthContext';
+import { isAdminUser } from '../utils/admin';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const { user, logout } = useAuth();
-  const userName = user ? (user.displayName || user.email) : null;
   
+  const { user, logout } = useAuth();
+  const isAdmin = isAdminUser(user);
+  const userName = user ? (user.displayName || user.email) : null;
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [prevLocation, setPrevLocation] = useState(location.pathname);
 
@@ -33,7 +35,7 @@ export default function Navbar() {
           <span className="brand-badge">Direction</span>
         </Link>
       </div>
-      
+
       <div className='divert'>
         <Link to='/' className={location.pathname === '/' ? 'active-nav-link' : ''}>Home</Link>
         <Link to='/family-counselling' className={location.pathname === '/family-counselling' ? 'active-nav-link highlight-link' : 'highlight-link'}>
@@ -42,7 +44,9 @@ export default function Navbar() {
         <Link to='/outcomes' className={location.pathname === '/outcomes' ? 'active-nav-link' : ''}>Outcomes</Link>
         <Link to='/explainer' className={location.pathname === '/explainer' ? 'active-nav-link' : ''}>Explainer & ROI</Link>
         <Link to='/career' className={location.pathname === '/career' ? 'active-nav-link' : ''}>Careers</Link>
-        <Link to='/admin' className={location.pathname === '/admin' ? 'active-nav-link' : ''}>Admin</Link>
+        {isAdmin && (
+          <Link to='/admin' className={location.pathname === '/admin' ? 'active-nav-link' : ''}>Admin</Link>
+        )}
         <Link to='/aboutus' className={location.pathname === '/aboutus' ? 'active-nav-link' : ''}>About Us</Link>
         <Link to='/contactus' className={location.pathname === '/contactus' ? 'active-nav-link' : ''}>Counsellor</Link>
       </div>
@@ -50,8 +54,8 @@ export default function Navbar() {
       <div className='sign'>
         {userName ? (
           <div className="user-profile-container">
-            <button 
-              className="profile-btn" 
+            <button
+              className="profile-btn"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
               <FontAwesomeIcon icon={faCircleUser} className="profile-icon" />

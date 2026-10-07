@@ -33,7 +33,7 @@ function App() {
           <Route path="/family-counselling" element={<ProtectedRoute message="Sign in to use Family AI."><FamilyCounselling /></ProtectedRoute>} />
           <Route path="/outcomes" element={<ProtectedRoute message="Sign in to view Verified Outcomes."><VerifiedOutcomes /></ProtectedRoute>} />
           <Route path="/explainer" element={<ProtectedRoute message="Sign in to view the Explainer & ROI."><FamilyExplainer /></ProtectedRoute>} />
-          <Route path="/admin" element={<ProtectedRoute message="Sign in to access the Admin dashboard."><AdminDashboard /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute adminOnly message="Sign in as admin to access the dashboard."><AdminDashboard /></ProtectedRoute>} />
           <Route path="/vocational" element={<Vocational />} />
 
           {/* Career & Streams */}
