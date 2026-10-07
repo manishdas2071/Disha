@@ -86,7 +86,7 @@ export default function ContactUs() {
             <FontAwesomeIcon icon={faPhone} className="contact-icon" />
             <div>
               <h3>Skill India National Helpline</h3>
-              <p><strong>1800-123-9626</strong> (Toll Free)</p>
+              <p><strong>1800-123-1234</strong> (Toll Free)</p>
               <small>Mon - Sat (9:00 AM - 6:00 PM IST)</small>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function ContactUs() {
             <FontAwesomeIcon icon={faEnvelope} className="contact-icon" />
             <div>
               <h3>Email Support</h3>
-              <p>disha.guidance@gmail.com</p>
+              <p>marg.supports@gmail.com</p>
             </div>
           </div>
 
